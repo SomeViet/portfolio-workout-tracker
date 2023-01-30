@@ -1,7 +1,6 @@
 export default function Mockup() {
     return (
         <>
-            {" "}
             <h6> Mockup</h6>
             <h1> Hello User</h1>
             <span>Login</span>
@@ -12,11 +11,12 @@ export default function Mockup() {
                 <span>Week 1</span>
                 <button>Copy Prev Week</button>
                 <button>Add new week</button>
+                <button>Delete current week</button>
             </div>
             <form>
                 <div>
-                    <input placeholder="Day - does not reset on submit" />
                     <input placeholder="Week - does not reset on submit" />
+                    <input placeholder="Day - does not reset on submit" />
                 </div>
                 <div>
                     <input placeholder="Workout - reset" />
