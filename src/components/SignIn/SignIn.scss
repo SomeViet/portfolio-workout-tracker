@@ -1,0 +1,30 @@
+.signin {
+    &__form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-top: 100px;
+    }
+
+    &__input {
+        display: block;
+        margin: 16px auto;
+    }
+
+    &__submit {
+        align-self: center;
+    }
+
+    &__signup {
+        margin: 16px auto;
+        text-align: center;
+    }
+
+    &__signup-text {
+        margin: 8px auto;
+    }
+
+    &__signup-link {
+        text-decoration: none;
+    }
+}

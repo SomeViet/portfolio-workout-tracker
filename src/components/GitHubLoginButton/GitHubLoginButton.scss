@@ -1,0 +1,24 @@
+.github-login-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: none;
+    font-size: 0.9rem;
+    text-decoration: none;
+    font-weight: 500;
+    width: auto;
+    background-color: #f1f8f3;
+    > svg {
+        width: 1.5rem;
+    }
+
+    &:hover {
+        background-color: #e4f1e8;
+    }
+
+    &__text {
+        flex-grow: 1;
+    }
+}

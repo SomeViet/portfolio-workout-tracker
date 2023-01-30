@@ -1,0 +1,24 @@
+.signup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__header {
+        text-align: center;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__input {
+        display: block;
+        margin: 16px auto;
+    }
+
+    &__button {
+        margin: 16px auto;
+    }
+}
