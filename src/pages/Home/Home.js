@@ -26,6 +26,7 @@ export default function Home() {
         axios
             .get(`${SERVER_URL}/auth/profile`, { withCredentials: true })
             .then((res) => {
+                console.log(res);
                 setState({
                     isAuthenticating: false,
                     isLoggedIn: true,

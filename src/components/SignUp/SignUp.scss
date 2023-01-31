@@ -21,4 +21,12 @@
     &__button {
         margin: 16px auto;
     }
+
+    &__error {
+        color: red;
+    }
+
+    &__success {
+        color: limegreen;
+    }
 }
