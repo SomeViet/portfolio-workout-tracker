@@ -1,7 +1,7 @@
 import "./App.scss";
-import { Header, Mockup, SignUp } from "./components/index";
+import { Header, Mockup } from "./components/index";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Home, Main } from "./pages/index";
+import { Home, Workouts } from "./pages/index";
 
 function App() {
     return (
@@ -10,10 +10,10 @@ function App() {
                 <Header />
                 <Switch>
                     <Route path="/" exact component={Home}></Route>
-                    <Route path="/main" component={(Main, Mockup)}>
+                    <Route path="/workouts" component={Workouts}>
                         {/* Dynamic Week entry for previous weeks - referencing older index IDs */}
                     </Route>
-                    <Route path="/signup" component={SignUp}></Route>
+                    <Route path="/mockup" component={Mockup}></Route>
                 </Switch>
             </BrowserRouter>
         </>

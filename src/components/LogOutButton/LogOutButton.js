@@ -1,9 +1,19 @@
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 export default function LogoutButton() {
+    function clearSession() {
+        sessionStorage.setItem("authToken", "");
+        sessionStorage.setItem("name", "");
+        sessionStorage.setItem("username", "");
+    }
+
     return (
         // The link will take user to `http://localhost:5050/auth/logout` which will delete the user server session and redirect user back to client-side app with the cookie invalidated
-        <a className="logout-button" href={`${SERVER_URL}/auth/logout`}>
+        <a
+            className="logout-button"
+            href={`${SERVER_URL}/auth/logout`}
+            onClick={clearSession}
+        >
             {/* Logout icon SVG */}
             <svg version="1.1" viewBox="0 0 490.3 490.3">
                 <path d="M0,121.05v248.2c0,34.2,27.9,62.1,62.1,62.1h200.6c34.2,0,62.1-27.9,62.1-62.1v-40.2c0-6.8-5.5-12.3-12.3-12.3    s-12.3,5.5-12.3,12.3v40.2c0,20.7-16.9,37.6-37.6,37.6H62.1c-20.7,0-37.6-16.9-37.6-37.6v-248.2c0-20.7,16.9-37.6,37.6-37.6h200.6    c20.7,0,37.6,16.9,37.6,37.6v40.2c0,6.8,5.5,12.3,12.3,12.3s12.3-5.5,12.3-12.3v-40.2c0-34.2-27.9-62.1-62.1-62.1H62.1    C27.9,58.95,0,86.75,0,121.05z" />

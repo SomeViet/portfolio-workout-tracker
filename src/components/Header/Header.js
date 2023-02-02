@@ -19,12 +19,19 @@ export default function Header() {
                     <NavLink
                         className="header__nav-link"
                         activeClassName="header__nav-link--active"
-                        to="/main"
+                        to="/workouts"
                         exact
                     >
                         Workouts
                     </NavLink>
-                    <div>Logout</div>
+                    <NavLink
+                        className="header__nav-link"
+                        activeClassName="header__nav-link--active"
+                        to="/mockup"
+                        exact
+                    >
+                        Mockup
+                    </NavLink>
                 </nav>
             </div>
         </section>

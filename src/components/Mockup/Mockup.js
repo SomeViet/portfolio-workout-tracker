@@ -2,9 +2,6 @@ export default function Mockup() {
     return (
         <>
             <h6> Mockup</h6>
-            <h1> Hello User</h1>
-            <span>Login</span>
-            <span>Logout</span>
             <div>
                 <span>Week 3</span>
                 <span>Week 2</span>

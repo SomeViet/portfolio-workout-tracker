@@ -10,40 +10,68 @@ import {
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 export default function Home() {
-    let [state, setState] = useState({
-        isAuthenticating: true,
-        isLoggedIn: false,
-        profileData: null,
-    });
+    let [isLoggedIn, setIsLoggedIn] = useState(false);
+    let [token, setToken] = useState();
+    let [name, setName] = useState();
+    let [username, setUsername] = useState();
 
-    let {
-        // isAuthenticating,
-        isLoggedIn,
-        profileData,
-    } = state;
+    function grabSignInData(childToken, childName, childUsername) {
+        sessionStorage.setItem("authToken", childToken);
+        sessionStorage.setItem("name", childName);
+        sessionStorage.setItem("username", childUsername);
+        setToken(childToken);
+    }
+
     // On mount
     useEffect(() => {
-        axios
-            .get(`${SERVER_URL}/auth/profile`, { withCredentials: true })
-            .then((res) => {
-                console.log(res);
-                setState({
-                    isAuthenticating: false,
-                    isLoggedIn: true,
-                    profileData: res.data,
+        // If no token exists, proceed to loading login screen / finding token
+
+        // If client has a prev. session token, load it
+        if (sessionStorage.authToken) {
+            setToken(sessionStorage.authToken);
+        } else {
+            // Otherwise check if there is a github session.
+            axios
+                .get(`${SERVER_URL}/auth/profile`, {
+                    withCredentials: true,
+                })
+                .then((response) => {
+                    // If github login is successful, set session storage items and login with credentials from response
+                    sessionStorage.setItem("username", response.data.username);
+                    sessionStorage.setItem("name", response.data.name);
+
+                    axios
+                        .post(`${SERVER_URL}/auth/login`, {
+                            username: response.data.username,
+                            password: "",
+                            github_id: response.data.github_id,
+                        })
+                        // set token response to session
+                        .then((response) => {
+                            sessionStorage.setItem(
+                                "authToken",
+                                response.data.token
+                            );
+                            setToken(response.data.token);
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                })
+                .catch(() => {
+                    console.log("Error Authenticating");
                 });
-            })
-            .catch((error) => {
-                if (error.response.status === 401) {
-                    setState({
-                        isAuthenticating: false,
-                        isLoggedIn: false,
-                    });
-                } else {
-                    console.log("Error Authenticating: ", error);
-                }
-            });
+        }
     }, []);
+
+    useEffect(() => {
+        // If token exists, proceed to login
+        if (token) {
+            setName(sessionStorage.name);
+            setUsername(sessionStorage.username);
+            setIsLoggedIn(true);
+        }
+    }, [token]);
 
     return (
         <>
@@ -53,9 +81,7 @@ export default function Home() {
             </section>
             {isLoggedIn ? (
                 <>
-                    <h2 className="home__header-2">
-                        Hello, {profileData.name}
-                    </h2>
+                    <h2 className="home__header-2">Hello {name}</h2>
                     <p className="home__text">You are currently logged in.</p>
                     <p className="home__text">
                         Please go to the workout tab to see your workouts
@@ -69,7 +95,7 @@ export default function Home() {
                     <h2 className="home__header-2">Please Log In</h2>
                     <div className="home__split-login">
                         <span className="home__split-login-container">
-                            <SignIn />
+                            <SignIn grabSignInData={grabSignInData} />
                         </span>
 
                         <span className="home__split-login-container">
