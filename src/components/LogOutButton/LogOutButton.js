@@ -1,10 +1,11 @@
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
-export default function LogoutButton() {
+export default function LogoutButton({ setIsLoggedIn }) {
     function clearSession() {
         sessionStorage.setItem("authToken", "");
         sessionStorage.setItem("name", "");
         sessionStorage.setItem("username", "");
+        setIsLoggedIn(false);
     }
 
     return (

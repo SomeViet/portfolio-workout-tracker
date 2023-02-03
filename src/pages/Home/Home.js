@@ -9,23 +9,9 @@ import {
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
-export default function Home() {
-    let [isLoggedIn, setIsLoggedIn] = useState(false);
-    let [token, setToken] = useState();
-    let [name, setName] = useState();
-    let [username, setUsername] = useState();
-
-    function grabSignInData(childToken, childName, childUsername) {
-        sessionStorage.setItem("authToken", childToken);
-        sessionStorage.setItem("name", childName);
-        sessionStorage.setItem("username", childUsername);
-        setToken(childToken);
-    }
-
+export default function Home({ isLoggedIn, setIsLoggedIn, name, setToken }) {
     // On mount
     useEffect(() => {
-        // If no token exists, proceed to loading login screen / finding token
-
         // If client has a prev. session token, load it
         if (sessionStorage.authToken) {
             setToken(sessionStorage.authToken);
@@ -64,14 +50,12 @@ export default function Home() {
         }
     }, []);
 
-    useEffect(() => {
-        // If token exists, proceed to login
-        if (token) {
-            setName(sessionStorage.name);
-            setUsername(sessionStorage.username);
-            setIsLoggedIn(true);
-        }
-    }, [token]);
+    function grabSignInData(childToken, childName, childUsername) {
+        sessionStorage.setItem("authToken", childToken);
+        sessionStorage.setItem("name", childName);
+        sessionStorage.setItem("username", childUsername);
+        setToken(childToken);
+    }
 
     return (
         <>
@@ -87,7 +71,7 @@ export default function Home() {
                         Please go to the workout tab to see your workouts
                     </p>
                     <span className="home__button">
-                        <LogOutButton />
+                        <LogOutButton setIsLoggedIn={setIsLoggedIn} />
                     </span>
                 </>
             ) : (
