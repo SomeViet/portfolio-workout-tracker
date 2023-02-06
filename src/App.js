@@ -14,12 +14,6 @@ function App() {
     useEffect(() => {
         if (sessionStorage.authToken) {
             setToken(sessionStorage.authToken);
-        }
-    });
-
-    // If token exists, populate other fields
-    useEffect(() => {
-        if (token) {
             setName(sessionStorage.name);
             setUsername(sessionStorage.username);
             setIsLoggedIn(true);
@@ -40,11 +34,19 @@ function App() {
                             setToken={setToken}
                         />
                     </Route>
-                    <Route path="/workouts">
-                        <Workouts username={username} isLoggedIn={isLoggedIn} />
+                    <Route path="/workouts" exact>
+                        <Workouts
+                            username={username}
+                            isLoggedIn={isLoggedIn}
+                            token={token}
+                        />
                     </Route>
-                    <Route path="/workouts:week">
-                        <Workouts username={username} isLoggedIn={isLoggedIn} />
+                    <Route path="/workouts/:week">
+                        <Workouts
+                            username={username}
+                            isLoggedIn={isLoggedIn}
+                            token={token}
+                        />
                     </Route>
                     <Route path="/signup" component={SignUp}></Route>
                     {/* To remove once mockup is done */}

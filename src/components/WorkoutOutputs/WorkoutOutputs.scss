@@ -1,0 +1,27 @@
+.workout-outputs {
+    border: 1px solid black;
+    padding: 20px;
+    margin-top: 20px;
+
+    &__header {
+        font-weight: 700;
+        font-size: 24px;
+        display: flex;
+    }
+
+    &__name {
+        width: 25vw;
+    }
+
+    &__sets {
+        width: 10vw;
+    }
+
+    &__reps {
+        width: 10vw;
+    }
+
+    &__weight {
+        width: 10vw;
+    }
+}

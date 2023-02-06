@@ -20,7 +20,9 @@ export default function Mockup() {
                     <input placeholder="Sets - reset" />
                     <input placeholder="Reps - reset" />
                     <input placeholder="Weight - reset" />
-                    <button type="submit">Add</button>
+                    <button type="submit">
+                        Add - push to workoutdata variable
+                    </button>
                 </div>
                 <div>Error Message: Please fill out all fields</div>
             </form>
@@ -129,6 +131,7 @@ export default function Mockup() {
                     <button type="button">Delete</button>
                 </div>
             </div>
+            <button>Save</button>
         </>
     );
 }

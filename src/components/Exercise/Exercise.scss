@@ -1,0 +1,25 @@
+.exercise {
+    display: inline-flex;
+    border: 0.5px solid lightgray;
+    margin: 2px;
+    padding: 10px;
+
+    &__name {
+        width: 25vw;
+    }
+
+    &__sets {
+        width: 10vw;
+    }
+
+    &__reps {
+        width: 10vw;
+    }
+
+    &__weight {
+        width: 10vw;
+    }
+
+    &__delete {
+    }
+}

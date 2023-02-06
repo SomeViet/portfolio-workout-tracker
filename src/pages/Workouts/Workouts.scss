@@ -1,0 +1,13 @@
+.workouts {
+    position: relative;
+    height: 80vh;
+
+    &__error {
+        // text-align: center;
+        position: absolute;
+
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

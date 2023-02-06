@@ -1,0 +1,22 @@
+.workout-inputs {
+    border: 1px solid black;
+    padding: 20px;
+
+    &__week {
+    }
+
+    &__form {
+    }
+
+    &__day-selection {
+    }
+
+    &__exercise-container {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    &__exercise-input {
+    }
+}
