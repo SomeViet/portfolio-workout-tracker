@@ -30,6 +30,7 @@ export default withRouter(function Workouts({
                 })
                 // Set the workout data to state to work with
                 .then((response) => {
+                    console.log(response.data.query);
                     setWorkoutData(response.data.query);
                 })
                 .catch((error) => {
@@ -84,9 +85,9 @@ export default withRouter(function Workouts({
                         <WorkoutInputs
                             activeWeek={activeWeek}
                             workoutData={workoutData}
-                            uniqueWeeks={uniqueWeeks}
                             username={username}
                             token={token}
+                            setWorkoutData={setWorkoutData}
                         />
                         <WorkoutOutputs
                             activeWeek={activeWeek}

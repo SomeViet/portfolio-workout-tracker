@@ -4,7 +4,13 @@ import axios from "axios";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
-export default function WorkoutInputs({ activeWeek, username, token }) {
+export default function WorkoutInputs({
+    activeWeek,
+    username,
+    token,
+    workoutData,
+    setWorkoutData,
+}) {
     const formInitialDetails = {
         exercise: "",
         sets: "",
@@ -42,10 +48,15 @@ export default function WorkoutInputs({ activeWeek, username, token }) {
         ) {
             // If user didn't edit the Day, add Sunday to the payload
             let payload = formInputs;
-
             if (!payload.day) {
                 payload.day = "Sunday";
             }
+
+            // Convert payload string to integer
+            payload.sets = Number(payload.sets);
+            payload.reps = Number(payload.reps);
+            payload.weight = Number(payload.weight);
+            payload.week_id = Number(payload.week_id);
 
             // Send data to API
             axios
@@ -56,7 +67,12 @@ export default function WorkoutInputs({ activeWeek, username, token }) {
                 })
                 // Success Message
                 .then((response) => {
-                    console.log(response);
+                    let newExerciseId = response.data.exerciseId;
+                    let completePayload = { ...payload, id: newExerciseId };
+
+                    let updatedWorkoutData = [...workoutData, completePayload];
+                    setWorkoutData(updatedWorkoutData);
+
                     // Reset inputs
                     setStatus({ sucesss: true, message: "Exercise Added" });
                     // setFormInputs(formInitialDetails);
