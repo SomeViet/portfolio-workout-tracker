@@ -4,7 +4,7 @@ export default function LogoutButton({ setIsLoggedIn }) {
     function clearSession() {
         sessionStorage.setItem("authToken", "");
         sessionStorage.setItem("name", "");
-        sessionStorage.setItem("username", "");
+        sessionStorage.setItem("userId", "");
         setIsLoggedIn(false);
     }
 

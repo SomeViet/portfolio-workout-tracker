@@ -8,7 +8,7 @@ const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 export default withRouter(function Workouts({
     isLoggedIn,
-    username,
+    userId,
     match,
     token,
 }) {
@@ -18,26 +18,25 @@ export default withRouter(function Workouts({
 
     // Load on mount - refreshing doesn't remount
     useEffect(() => {
-        if (token && username) {
+        if (token && userId) {
             axios
                 // Access workout data
                 .get(`${SERVER_URL}/workout`, {
                     // Axios isn't setup to send body data via Get Request, so to send user information via Params
-                    params: { username: username },
+                    params: { userId: userId },
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                 })
                 // Set the workout data to state to work with
                 .then((response) => {
-                    console.log(response.data.query);
                     setWorkoutData(response.data.query);
                 })
                 .catch((error) => {
                     console.log(error);
                 });
         }
-    }, [token, username]);
+    }, [token, userId]);
 
     // Load the latest week on render, or whatever the dynamic active week is
     useEffect(() => {
@@ -54,6 +53,7 @@ export default withRouter(function Workouts({
                 let weeks = workoutData.map(({ week_id }) => {
                     return week_id;
                 });
+
                 // Isolate all the unique weeks into a new array, and sort in descending order
                 setUniqueWeeks(Array.from(new Set(weeks)).sort().reverse());
             }
@@ -79,13 +79,13 @@ export default withRouter(function Workouts({
                 ) : (
                     <>
                         <SubNav
-                            workoutData={workoutData}
                             uniqueWeeks={uniqueWeeks}
+                            setUniqueWeeks={setUniqueWeeks}
                         />
                         <WorkoutInputs
                             activeWeek={activeWeek}
                             workoutData={workoutData}
-                            username={username}
+                            userId={userId}
                             token={token}
                             setWorkoutData={setWorkoutData}
                         />

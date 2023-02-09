@@ -2,7 +2,11 @@ import "./SubNav.scss";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 
-export default withRouter(function SubNav({ uniqueWeeks }) {
+export default withRouter(function SubNav({ uniqueWeeks, setUniqueWeeks }) {
+    let onHandleAddWeek = () => {
+        console.log(uniqueWeeks);
+    };
+
     return (
         <nav>
             {uniqueWeeks.map((week) => {
@@ -17,7 +21,9 @@ export default withRouter(function SubNav({ uniqueWeeks }) {
                     </Link>
                 );
             })}
-            <button className="subnav__button">Add A Week</button>
+            <button className="subnav__button" onClick={onHandleAddWeek}>
+                Add A Week
+            </button>
             <button className="subnav__button">Copy Prev Week</button>
             {/* Add a prompt - Are you sure? */}
             <button className="subnav__button">Delete Current Week</button>

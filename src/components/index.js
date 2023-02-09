@@ -1,4 +1,3 @@
-export { default as Mockup } from "./Mockup/Mockup";
 export { default as SignUp } from "./SignUp/SignUp";
 export { default as SignIn } from "./SignIn/SignIn";
 export { default as Profile } from "./Profile/Profile";

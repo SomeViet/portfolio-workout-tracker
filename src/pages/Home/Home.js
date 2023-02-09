@@ -1,5 +1,5 @@
 import "./Home.scss";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import {
     GitHubLoginButton,
@@ -9,7 +9,13 @@ import {
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
-export default function Home({ isLoggedIn, setIsLoggedIn, name, setToken }) {
+export default function Home({
+    isLoggedIn,
+    setIsLoggedIn,
+    name,
+    setToken,
+    userId,
+}) {
     // On mount
     useEffect(() => {
         // If client has a prev. session token, load it
@@ -22,8 +28,10 @@ export default function Home({ isLoggedIn, setIsLoggedIn, name, setToken }) {
                     withCredentials: true,
                 })
                 .then((response) => {
+                    console.log(response);
+
                     // If github login is successful, set session storage items and login with credentials from response
-                    sessionStorage.setItem("username", response.data.username);
+                    sessionStorage.setItem("userId", response.data.id);
                     sessionStorage.setItem("name", response.data.name);
 
                     axios
@@ -48,12 +56,12 @@ export default function Home({ isLoggedIn, setIsLoggedIn, name, setToken }) {
                     console.log("Error Authenticating");
                 });
         }
-    }, []);
+    }, [setToken]);
 
-    function grabSignInData(childToken, childName, childUsername) {
+    function grabSignInData(childToken, childName, childUserId) {
         sessionStorage.setItem("authToken", childToken);
         sessionStorage.setItem("name", childName);
-        sessionStorage.setItem("username", childUsername);
+        sessionStorage.setItem("userId", childUserId);
         setToken(childToken);
     }
 

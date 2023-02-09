@@ -1,12 +1,12 @@
 import "./App.scss";
-import { Header, Mockup, SignUp } from "./components/index";
+import { Header, SignUp } from "./components/index";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Home, Workouts } from "./pages/index";
 import { useEffect, useState } from "react";
 
 function App() {
     let [isLoggedIn, setIsLoggedIn] = useState(false);
-    let [username, setUsername] = useState();
+    let [userId, setUserId] = useState();
     let [name, setName] = useState();
     let [token, setToken] = useState();
 
@@ -15,7 +15,7 @@ function App() {
         if (sessionStorage.authToken) {
             setToken(sessionStorage.authToken);
             setName(sessionStorage.name);
-            setUsername(sessionStorage.username);
+            setUserId(sessionStorage.userId);
             setIsLoggedIn(true);
         }
     }, [token]);
@@ -30,27 +30,25 @@ function App() {
                             isLoggedIn={isLoggedIn}
                             setIsLoggedIn={setIsLoggedIn}
                             name={name}
-                            setName={setName}
+                            userId={userId}
                             setToken={setToken}
                         />
                     </Route>
                     <Route path="/workouts" exact>
                         <Workouts
-                            username={username}
+                            userId={userId}
                             isLoggedIn={isLoggedIn}
                             token={token}
                         />
                     </Route>
                     <Route path="/workouts/:week">
                         <Workouts
-                            username={username}
+                            userId={userId}
                             isLoggedIn={isLoggedIn}
                             token={token}
                         />
                     </Route>
                     <Route path="/signup" component={SignUp}></Route>
-                    {/* To remove once mockup is done */}
-                    <Route path="/mockup" component={Mockup}></Route>
                 </Switch>
             </BrowserRouter>
         </>

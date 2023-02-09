@@ -6,7 +6,7 @@ const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 export default function WorkoutInputs({
     activeWeek,
-    username,
+    userId,
     token,
     workoutData,
     setWorkoutData,
@@ -30,7 +30,7 @@ export default function WorkoutInputs({
             ...formInputs,
             [category]: value,
             week_id: activeWeek,
-            username: username,
+            userId: userId,
         });
     };
 
@@ -52,11 +52,13 @@ export default function WorkoutInputs({
                 payload.day = "Sunday";
             }
 
+            console.log(payload);
             // Convert payload string to integer
             payload.sets = Number(payload.sets);
             payload.reps = Number(payload.reps);
             payload.weight = Number(payload.weight);
             payload.week_id = Number(payload.week_id);
+            payload.userId = Number(payload.userId);
 
             // Send data to API
             axios
@@ -67,10 +69,13 @@ export default function WorkoutInputs({
                 })
                 // Success Message
                 .then((response) => {
+                    //  Get the newly generated exercise ID
                     let newExerciseId = response.data.exerciseId;
+                    // Add exercise ID to payload, then create new workout Data
                     let completePayload = { ...payload, id: newExerciseId };
-
                     let updatedWorkoutData = [...workoutData, completePayload];
+
+                    // Update workout data, to prevent needing a 2nd database ping
                     setWorkoutData(updatedWorkoutData);
 
                     // Reset inputs

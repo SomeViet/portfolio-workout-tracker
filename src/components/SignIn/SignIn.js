@@ -29,7 +29,7 @@ export default function SignIn({ grabSignInData }) {
                     grabSignInData(
                         response.data.token,
                         response.data.name,
-                        response.data.username
+                        response.data.userid
                     );
                 })
                 .catch((error) => {

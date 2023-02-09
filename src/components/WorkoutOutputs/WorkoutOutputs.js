@@ -60,25 +60,23 @@ export default function WorkoutOutputs({
                           <React.Fragment key={index}>
                               {dayExercise.length > 0 ? (
                                   <React.Fragment key={index}>
-                                      <h3> {day}</h3>
+                                      <h3>{day}</h3>
                                       {dayExercise.map(
                                           ({
-                                              id,
+                                              exercise_id,
                                               exercise,
                                               reps,
                                               sets,
                                               weight,
                                           }) => {
                                               return (
-                                                  <React.Fragment key={id}>
-                                                      <Exercise
-                                                          key={id}
-                                                          exercise={exercise}
-                                                          sets={sets}
-                                                          reps={reps}
-                                                          weight={weight}
-                                                      />
-                                                  </React.Fragment>
+                                                  <Exercise
+                                                      key={exercise_id}
+                                                      exercise={exercise}
+                                                      sets={sets}
+                                                      reps={reps}
+                                                      weight={weight}
+                                                  />
                                               );
                                           }
                                       )}
