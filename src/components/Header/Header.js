@@ -24,14 +24,6 @@ export default function Header() {
                     >
                         Workouts
                     </NavLink>
-                    <NavLink
-                        className="header__nav-link"
-                        activeClassName="header__nav-link--active"
-                        to="/mockup"
-                        exact
-                    >
-                        Mockup
-                    </NavLink>
                 </nav>
             </div>
         </section>

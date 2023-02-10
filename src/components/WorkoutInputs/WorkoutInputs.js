@@ -58,7 +58,6 @@ export default function WorkoutInputs({
             payload.reps = Number(payload.reps);
             payload.weight = Number(payload.weight);
             payload.week_id = Number(payload.week_id);
-            payload.userId = Number(payload.userId);
 
             // Send data to API
             axios
@@ -72,7 +71,10 @@ export default function WorkoutInputs({
                     //  Get the newly generated exercise ID
                     let newExerciseId = response.data.exerciseId;
                     // Add exercise ID to payload, then create new workout Data
-                    let completePayload = { ...payload, id: newExerciseId };
+                    let completePayload = {
+                        ...payload,
+                        exercise_id: newExerciseId,
+                    };
                     let updatedWorkoutData = [...workoutData, completePayload];
 
                     // Update workout data, to prevent needing a 2nd database ping
@@ -80,7 +82,9 @@ export default function WorkoutInputs({
 
                     // Reset inputs
                     setStatus({ sucesss: true, message: "Exercise Added" });
-                    // setFormInputs(formInitialDetails);
+                    setFormInputs(formInitialDetails);
+                    // Move focus to exercise field
+                    document.getElementById("exercise-input").focus();
                 })
                 .catch((error) => {
                     console.log(error);
@@ -120,6 +124,7 @@ export default function WorkoutInputs({
                         placeholder="Exercise"
                         value={formInputs.exercise}
                         max="54"
+                        id="exercise-input"
                         onChange={(e) => {
                             onFormUpdate("exercise", e.target.value);
                         }}

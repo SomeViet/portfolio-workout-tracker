@@ -15,7 +15,7 @@ function App() {
         if (sessionStorage.authToken) {
             setToken(sessionStorage.authToken);
             setName(sessionStorage.name);
-            setUserId(sessionStorage.userId);
+            setUserId(Number(sessionStorage.userId));
             setIsLoggedIn(true);
         }
     }, [token]);

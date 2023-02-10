@@ -54,17 +54,23 @@ export default withRouter(function Workouts({
                     return week_id;
                 });
 
-                // Isolate all the unique weeks into a new array, and sort in descending order
-                setUniqueWeeks(Array.from(new Set(weeks)).sort().reverse());
+                // Isolate all the unique weeks into a new array, perform "numerical sorting", then sort in descending order
+                setUniqueWeeks(
+                    Array.from(new Set(weeks))
+                        .sort(function (num1, num2) {
+                            return num1 - num2;
+                        })
+                        .reverse()
+                );
             }
 
             // Only load once when uniqueWeeks receives array data
             if (!match.params.week && uniqueWeeks.length > 0) {
                 // Load latest week data
-                setActiveWeek(uniqueWeeks[0]);
+                setActiveWeek(Number(uniqueWeeks[0]));
             } else if ((match.params.week, workoutData)) {
                 // Load active week data
-                setActiveWeek(match.params.week);
+                setActiveWeek(Number(match.params.week));
             }
         }
     }, [uniqueWeeks, match.params.week, workoutData]);
@@ -81,6 +87,9 @@ export default withRouter(function Workouts({
                         <SubNav
                             uniqueWeeks={uniqueWeeks}
                             setUniqueWeeks={setUniqueWeeks}
+                            token={token}
+                            userId={userId}
+                            activeWeek={activeWeek}
                         />
                         <WorkoutInputs
                             activeWeek={activeWeek}
@@ -94,7 +103,6 @@ export default withRouter(function Workouts({
                             workoutData={workoutData}
                             uniqueWeeks={uniqueWeeks}
                         />
-                        <button>Save</button>
                     </>
                 )}
             </main>
