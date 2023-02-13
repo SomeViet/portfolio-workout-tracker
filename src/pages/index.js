@@ -1,2 +1,3 @@
 export { default as Home } from "./Home/Home";
 export { default as Workouts } from "./Workouts/Workouts";
+export { default as SignUp } from "./SignUp/SignUp";
