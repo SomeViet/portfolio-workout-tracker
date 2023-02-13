@@ -102,6 +102,8 @@ export default withRouter(function Workouts({
                             activeWeek={activeWeek}
                             workoutData={workoutData}
                             uniqueWeeks={uniqueWeeks}
+                            token={token}
+                            setWorkoutData={setWorkoutData}
                         />
                     </>
                 )}

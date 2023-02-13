@@ -6,6 +6,8 @@ export default function WorkoutOutputs({
     activeWeek,
     uniqueWeeks,
     workoutData,
+    token,
+    setWorkoutData,
 }) {
     let [activeExercises, setActiveExercises] = useState();
 
@@ -68,14 +70,22 @@ export default function WorkoutOutputs({
                                               reps,
                                               sets,
                                               weight,
+                                              day,
                                           }) => {
                                               return (
                                                   <Exercise
                                                       key={exercise_id}
+                                                      id={exercise_id}
                                                       exercise={exercise}
                                                       sets={sets}
                                                       reps={reps}
                                                       weight={weight}
+                                                      day={day}
+                                                      token={token}
+                                                      workoutData={workoutData}
+                                                      setWorkoutData={
+                                                          setWorkoutData
+                                                      }
                                                   />
                                               );
                                           }

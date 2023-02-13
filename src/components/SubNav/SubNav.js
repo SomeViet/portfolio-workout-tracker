@@ -2,10 +2,9 @@ import "./SubNav.scss";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
-const CLIENT_URL = process.env.REACT_APP_CLIENT_URL;
 
 export default withRouter(function SubNav({
     uniqueWeeks,
@@ -17,16 +16,16 @@ export default withRouter(function SubNav({
     // Buttons will lock on every add/copy/delete - state re-rendering
     let lockedAdd = true;
     let lockedDelete = true;
-    let lockedCopy = true;
+    // let lockedCopy = true;
 
     let unlockWeekButtons = () => {
         lockedAdd = false;
         lockedDelete = false;
-        lockedCopy = false;
+        // lockedCopy = false;
     };
 
     useEffect(() => {
-        setTimeout(unlockWeekButtons, 1300);
+        setTimeout(unlockWeekButtons, 800);
     });
 
     let onHandleAddWeek = (e) => {
@@ -126,11 +125,13 @@ export default withRouter(function SubNav({
             <button className="subnav__button" onClick={onHandleAddWeek}>
                 Add New Week
             </button>
-            <button className="subnav__button">Copy Prev Week</button>
-
             <button className="subnav__button" onClick={onHandleDeleteWeek}>
                 Delete Selected Week
             </button>
+
+            {/* <button className="subnav__button">
+                Copy Current Week to New Week - Feature to be added
+            </button> */}
         </nav>
     );
 });
