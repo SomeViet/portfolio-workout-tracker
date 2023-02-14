@@ -1,6 +1,7 @@
 import "./SignIn.scss";
 import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -79,9 +80,9 @@ export default function SignIn({ grabSignInData }) {
                     <p className="signin__signup-text">
                         Don't have an account?
                     </p>
-                    <a href="/signup" className="signin__signup-link">
+                    <Link to="/signup" className="signin__signup-link">
                         Sign up
-                    </a>
+                    </Link>
                 </div>
             </section>
         </>

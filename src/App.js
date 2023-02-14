@@ -1,6 +1,6 @@
 import "./App.scss";
 import { Header, SignUp } from "./components/index";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Route, Switch, HashRouter } from "react-router-dom";
 import { Home, Workouts } from "./pages/index";
 import { useEffect, useState } from "react";
 
@@ -22,7 +22,7 @@ function App() {
 
     return (
         <>
-            <BrowserRouter>
+            <HashRouter>
                 <Header />
                 <Switch>
                     <Route path="/" exact>
@@ -50,7 +50,7 @@ function App() {
                     </Route>
                     <Route path="/signup" component={SignUp}></Route>
                 </Switch>
-            </BrowserRouter>
+            </HashRouter>
         </>
     );
 }
