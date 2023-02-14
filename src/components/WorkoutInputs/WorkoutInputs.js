@@ -52,7 +52,6 @@ export default function WorkoutInputs({
                 payload.day = "Sunday";
             }
 
-            console.log(payload);
             // Convert payload string to integer
             payload.sets = Number(payload.sets);
             payload.reps = Number(payload.reps);
@@ -82,7 +81,14 @@ export default function WorkoutInputs({
 
                     // Reset inputs
                     setStatus({ sucesss: true, message: "Exercise Added" });
-                    setFormInputs(formInitialDetails);
+
+                    // Have initial form include day
+                    let revisedInitialForm = {
+                        ...formInitialDetails,
+                        day: payload.day,
+                    };
+
+                    setFormInputs(revisedInitialForm);
                     // Move focus to exercise field
                     document.getElementById("exercise-input").focus();
                 })
