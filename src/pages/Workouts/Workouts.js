@@ -25,7 +25,7 @@ export default withRouter(function Workouts({
                     // Axios isn't setup to send body data via Get Request, so to send user information via Params
                     params: { userId: userId },
                     headers: {
-                        Authorization: `Bearer ${token}`,
+                        Authorization: token,
                     },
                 })
                 // Set the workout data to state to work with

@@ -39,7 +39,7 @@ export default withRouter(function SubNav({
             axios
                 .post(`${SERVER_URL}/workout/addweek`, payload, {
                     headers: {
-                        Authorization: `Bearer ${token}`,
+                        Authorization: token,
                     },
                 })
                 .then((response) => {
@@ -76,7 +76,7 @@ export default withRouter(function SubNav({
                     axios
                         .delete(`${SERVER_URL}/workout/deleteweek`, {
                             headers: {
-                                Authorization: `Bearer ${token}`,
+                                Authorization: token,
                             },
                             // Axios delete request requires the data option
                             data: payload,

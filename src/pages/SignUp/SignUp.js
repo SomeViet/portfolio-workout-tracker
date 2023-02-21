@@ -40,11 +40,12 @@ export default function SignUp() {
                     name: name,
                 })
                 .then((response) => {
+                    console.log(response.data);
                     // Remove duplicate error
                     setDuplicate(response.data.duplicate);
 
                     // Notify user of succesful signup
-                    setSignUpSuccessful(true);
+                    setSignUpSuccessful(response.data.signUpSuccessful);
 
                     // Reset form field after sign-up
                     setFormDetails(formInitialDetails);
@@ -57,6 +58,7 @@ export default function SignUp() {
             // Notify user some fields not filled in
             setDuplicate(false);
             setNotFilled(true);
+            setSignUpSuccessful(false);
         }
     }
 

@@ -1,7 +1,7 @@
 import "./App.scss";
-import { Header, SignUp } from "./components/index";
+import { Header } from "./components/index";
 import { Route, Switch, HashRouter } from "react-router-dom";
-import { Home, Workouts } from "./pages/index";
+import { Home, Workouts, SignUp } from "./pages/index";
 import { useEffect, useState } from "react";
 
 function App() {

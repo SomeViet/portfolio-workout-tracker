@@ -62,7 +62,7 @@ export default function WorkoutInputs({
             axios
                 .post(`${SERVER_URL}/workout/addexercise`, payload, {
                     headers: {
-                        Authorization: `Bearer ${token}`,
+                        Authorization: token,
                     },
                 })
                 // Success Message

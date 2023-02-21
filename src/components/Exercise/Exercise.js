@@ -29,7 +29,7 @@ export default function Exercise({
         axios
             .delete(`${SERVER_URL}/workout/deleteexercise`, {
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    Authorization: token,
                 },
                 // Axios delete request requires the data option
                 data: payload,
