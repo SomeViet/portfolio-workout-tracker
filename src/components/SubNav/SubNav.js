@@ -90,7 +90,7 @@ export default withRouter(function SubNav({
                                     }
                                 );
                                 setUniqueWeeks(updatedUniqueWeek);
-                                window.location.assign("/workouts/");
+                                window.location.assign("/#/workouts");
                             }
                         })
                         .catch((error) => {

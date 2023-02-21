@@ -23,38 +23,6 @@ export default function Home({
             setToken(sessionStorage.authToken);
         } else {
             // Otherwise check if there is a github session.
-            axios
-                .get(`${SERVER_URL}/auth/profile`, {
-                    withCredentials: true,
-                })
-                .then((response) => {
-                    console.log(response);
-
-                    // If github login is successful, set session storage items and login with credentials from response
-                    sessionStorage.setItem("userId", response.data.id);
-                    sessionStorage.setItem("name", response.data.name);
-
-                    axios
-                        .post(`${SERVER_URL}/auth/login`, {
-                            username: response.data.username,
-                            password: "",
-                            github_id: response.data.github_id,
-                        })
-                        // set token response to session
-                        .then((response) => {
-                            sessionStorage.setItem(
-                                "authToken",
-                                response.data.token
-                            );
-                            setToken(response.data.token);
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                        });
-                })
-                .catch(() => {
-                    console.log("Error Authenticating");
-                });
         }
     }, [setToken]);
 

@@ -9,7 +9,6 @@ export default function LogoutButton({ setIsLoggedIn }) {
     }
 
     return (
-        // The link will take user to `http://localhost:5050/auth/logout` which will delete the user server session and redirect user back to client-side app with the cookie invalidated
         <a
             className="logout-button"
             href={`${SERVER_URL}/auth/logout`}
